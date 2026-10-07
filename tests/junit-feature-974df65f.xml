@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="feature" tests="10" failures="1">
+  <testsuite name="feature" tests="10" failures="1" errors="0" skipped="1" timestamp="2026-10-07T08:48:46">
+    <testcase classname="feature" name="FC-1 Valid credentials redirect to dashboard and create session"/>
+    <testcase classname="feature" name="FC-2 Login with correct username but incorrect password shows invalid credentials error"/>
+    <testcase classname="feature" name="FC-3 Login with non-existent username shows invalid credentials error"/>
+    <testcase classname="feature" name="FC-4 Login attempt on pre-locked account shows lockout message and prevents login"/>
+    <testcase classname="feature" name="FC-5 Submitting login form with both username and password empty shows required-field validation error"/>
+    <testcase classname="feature" name="FC-6 Submitting login form with empty username only shows required-field validation error"/>
+    <testcase classname="feature" name="FC-7 Submitting login form with empty password only shows required-field validation error"/>
+    <testcase classname="feature" name="FC-8 Reaching max failed login attempts locks the account immediately with lockout message">
+      <skipped/>
+    </testcase>
+    <testcase classname="feature" name="FC-9 Login with mismatched-case username logs in successfully (case-insensitive)">
+      <failure message="Error: expect(page).toHaveURL(expected) failed">Error: expect(page).toHaveURL(expected) failed
+--- trace/failure context ---
+console:
+  [console.error] Failed to load resource: the server responded with a status of 401 (Unauthorized)
+  [console.error] Failed to load resource: the server responded with a status of 401 (Unauthorized)
+  [console.error] Access to fetch at 'https://submit.backtrace.io/UNIVERSE/TOKEN/json' from origin 'https://www.saucedemo.com' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.
+  [console.error] Failed to load resource: net::ERR_FAILED
+failed/4xx network:
+  401 POST https://events.backtrace.io/api/unique-events/submit?universe=UNIVERSE&amp;token=TOKEN
+  401 POST https://events.backtrace.io/api/summed-events/submit?universe=UNIVERSE&amp;token=TOKEN
+  FAILED POST https://submit.backtrace.io/UNIVERSE/TOKEN/json — net::ERR_FAILED
+PAGE STATE AT FAILURE (https://www.saucedemo.com/) — accessibility snapshot; build the corrected locator from THIS:
+- text: Swag Labs
+- main:
+  - form "Login":
+    - textbox "Username": Standard_User
+    - textbox "Password": secret_sauce
+    - alert:
+      - button "Dismiss error"
+      - text: "Epic sadface: Username and password do not match any user in this service"
+    - button "Login"
+  - heading "Accepted usernames are:" [level=4]
+  - text: standard_user locked_out_user problem_user performance_glitch_user error_user visual_user
+  - heading "Password for all users:" [level=4]
+  - text: secret_sauce</failure>
+    </testcase>
+    <testcase classname="feature" name="FC-10 Valid login with slow-responding account still redirects to dashboard and creates session"/>
+  </testsuite>
+</testsuites>
